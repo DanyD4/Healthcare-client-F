@@ -1,17 +1,16 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import Login from "./components/Login";
-import UserDashboard from "./components/UserDashboard";
-import AdminDashboard from "./components/AdminDashboard";
-import Unauthorized from "./components/Unauthorized";
-import Home from "./components/Home";
-import RequireAuth from "./components/RequireAuth";
-import GlobalStyle from "./styles/GlobalStyle";
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import Login from './components/Login';
+import UserDashboard from './components/UserDashboard';
+import AdminDashboard from './components/AdminDashboard';
+import Unauthorized from './components/Unauthorized';
+import Home from './components/Home';
+import RequireAuth from './components/RequireAuth';
+import GlobalStyle from './styles/GlobalStyle';
+import Header from './components/Header'; 
+
 
 function App() {
   return (
@@ -19,6 +18,7 @@ function App() {
       <GlobalStyle />
       <div className="content">
         <Router>
+          <Header /> 
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
