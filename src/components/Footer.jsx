@@ -13,6 +13,7 @@ const FooterContainer = styled.footer`
   bottom: 0;
 `;
 
+
 const FooterText = styled.p`
   margin: 0;
   font-size: 0.9rem;
@@ -20,7 +21,7 @@ const FooterText = styled.p`
 
 const Footer = () => (
   <FooterContainer>
-    <FooterText>© 2024 Health Care AB.</FooterText>
+    <FooterText> © 2024 Health Care AB .</FooterText>
   </FooterContainer>
 );
 
