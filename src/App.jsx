@@ -1,17 +1,15 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import Login from "./components/Login";
-import UserDashboard from "./components/UserDashboard";
-import AdminDashboard from "./components/AdminDashboard";
-import Unauthorized from "./components/Unauthorized";
-import Home from "./components/Home";
-import RequireAuth from "./components/RequireAuth";
-import GlobalStyle from "./styles/GlobalStyle";
+// App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import Login from './components/Login';
+import UserDashboard from './components/UserDashboard';
+import AdminDashboard from './components/AdminDashboard';
+import Unauthorized from './components/Unauthorized';
+import Home from './components/Home';
+import RequireAuth from './components/RequireAuth';
+import GlobalStyle from './styles/GlobalStyle';
+import Footer from './components/Footer'; 
 
 function App() {
   return (
@@ -41,6 +39,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <Footer /> 
         </Router>
       </div>
     </AuthProvider>
