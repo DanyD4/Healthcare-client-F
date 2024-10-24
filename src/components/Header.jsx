@@ -9,7 +9,8 @@ const HeaderContainer = styled.header`
   align-items: center;
   padding: 1rem 2rem;
   background-color: #057d7a;
-  color: #fff;
+  color: #fff; 
+
 `;
 
 const Logo = styled.div`
