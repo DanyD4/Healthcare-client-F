@@ -12,6 +12,10 @@ import Unauthorized from "./components/Unauthorized";
 import Home from "./components/Home";
 import RequireAuth from "./components/RequireAuth";
 import GlobalStyle from "./styles/GlobalStyle";
+import Register from "./components/Register";
+import Booking from "./components/Booking";
+import BookingConfirmation from "./components/BookingConfirmation"; // Lägg till denna import
+
 
 function App() {
   return (
@@ -38,6 +42,9 @@ function App() {
                 </RequireAuth>
               }
             />
+            <Route path="/register" element={<Register />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/booking-confirmation" element={<BookingConfirmation />} /> 
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
@@ -46,5 +53,6 @@ function App() {
     </AuthProvider>
   );
 }
+
 
 export default App;
