@@ -12,6 +12,7 @@ import Unauthorized from "./components/Unauthorized";
 import Home from "./components/Home";
 import RequireAuth from "./components/RequireAuth";
 import GlobalStyle from "./styles/GlobalStyle";
+import Register from "./components/Register"; // Lägg till denna import
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                 </RequireAuth>
               }
             />
+            <Route path="/register" element={<Register />} /> {/* Ny route för Register */}
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
