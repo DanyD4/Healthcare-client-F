@@ -1,3 +1,4 @@
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +14,8 @@ import Home from "./components/Home";
 import RequireAuth from "./components/RequireAuth";
 import GlobalStyle from "./styles/GlobalStyle";
 import Register from "./components/Register"; // Lägg till denna import
+import Footer from './components/Footer'; 
+
 
 function App() {
   return (
@@ -43,6 +46,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <Footer /> 
         </Router>
       </div>
     </AuthProvider>
