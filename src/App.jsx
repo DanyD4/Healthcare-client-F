@@ -15,6 +15,8 @@ import RequireAuth from "./components/RequireAuth";
 import GlobalStyle from "./styles/GlobalStyle";
 import Register from "./components/Register"; // Lägg till denna import
 import Footer from './components/Footer'; 
+import Header from './components/Header'; 
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
       <GlobalStyle />
       <div className="content">
         <Router>
+          <Header /> 
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
