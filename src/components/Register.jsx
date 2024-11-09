@@ -1,4 +1,3 @@
-//import React, { useState } from "react";
 import React, {useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -78,10 +77,7 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const {
-    state: { user },
-    dispatch,
-  } = useContext(AuthContext);
+  const { setAuthState } = useContext(AuthContext);
 
   console.log("API URL:", import.meta.env.VITE_API_URL); // nytt
 
@@ -104,9 +100,10 @@ const Register = () => {
           password,
         }
       );
-      dispatch ({
-        type: "REGISTER",
-        payload: data,
+      setAuthState({
+        isAuthenticated: true,
+        user: data.username,
+        roles: data.roles,
       });
 
       window.localStorage.setItem("user", JSON.stringify(data));
@@ -168,94 +165,3 @@ return (
 
 
 export default Register;
-
-
-
-
-
-
-
-
-/*
-
-// Main Register Component
-function Register() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-
-    const userData = {
-      firstName,
-      lastName,
-      userName,
-      email,
-      password,
-    };
-
-
-    try {
-      const response = await axios.post("https://api.yourdomain.com/register", userData);
-      setMessage("Registration successful!");
-    } catch (error) {
-      setMessage("Registration failed. Please try again.");
-    }
-  };
-
-
-  return (
-    <RegisterContainer>
-      <RegisterTitle>Create Account</RegisterTitle>
-      <FormWrapper onSubmit={handleSubmit}>
-        <label>First Name</label>
-        <StyledInput
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-        <label>Last Name</label>
-        <StyledInput
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-        <label>User Name</label>
-        <StyledInput
-          type="text"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          required
-        />
-        <label>Email Address</label>
-        <StyledInput
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label>Password</label>
-        <StyledInput
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <RegisterButton type="submit">Register</RegisterButton>
-      </FormWrapper>
-      {message && <p style={{ color: message.includes("successful") ? "green" : "red" }}>{message}</p>}
-    </RegisterContainer>
-  );
-}
-
-
-export default Register;
-*/
