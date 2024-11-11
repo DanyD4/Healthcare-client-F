@@ -77,7 +77,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/login",
+        `${import.meta.env.VITE_API_URL}/auth/login`,
         credentials,
         {
           withCredentials: true,
@@ -85,6 +85,7 @@ function Login() {
           // so remember to user this if needed
         }
       );
+      console.log("Response data:", response.data); 
 
       const { username, roles } = response.data;
 
@@ -92,16 +93,24 @@ function Login() {
         isAuthenticated: true,
         user: username,
         roles: roles,
-        loading: false,
+        loading: false, 
+      });
+
+      console.log("Auth state updated:", {
+        isAuthenticated: true,
+        user: username,
+        roles: roles,
+        loading: false, 
       });
 
       // redirect based on role
-      if (roles.includes("ADMIN")) {
+      if (roles.includes("ROLE_ADMIN")) {
         navigate("/admin/dashboard", { replace: true });
       } else {
         navigate("/user/dashboard", { replace: true });
       }
     } catch (error) {
+      console.error("Login error:", error);
       setError("Invalid username or password");
     }
   };

@@ -32,17 +32,17 @@ function App() {
             <Route
               path="/user/dashboard"
               element={
-                <RequireAuth allowedRoles={["USER"]}>
+                <RequireAuth allowedRoles={["ROLE_USER"]}> 
                   <UserDashboard />
-                </RequireAuth>
+                </RequireAuth>//ändrat från USER
               }
             />
             <Route
               path="/admin/dashboard"
               element={
-                <RequireAuth allowedRoles={["ADMIN"]}>
+                <RequireAuth allowedRoles={["ROLE_ADMIN"]}> 
                   <AdminDashboard />
-                </RequireAuth>
+                </RequireAuth>//ändrat från ADMIN
               }
             />
             <Route path="/register" element={<Register />} /> {/* Ny route för Register */}
