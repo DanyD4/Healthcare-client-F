@@ -104,7 +104,7 @@ function Login() {
       });
 
       // redirect based on role
-      if (roles.includes("ADMIN")) {
+      if (roles.includes("ROLE_ADMIN")) {
         navigate("/admin/dashboard", { replace: true });
       } else {
         navigate("/user/dashboard", { replace: true });

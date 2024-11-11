@@ -11,7 +11,7 @@ function RequireAuth({ children, allowedRoles }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/auth/check", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/check`, { //ändrat den hårdkodade URL 
           withCredentials: true,
           // using withCredentials is crutial for and request that needs to check authorization!
           // so remember to user this if needed

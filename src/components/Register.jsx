@@ -109,7 +109,7 @@ const Register = () => {
       window.localStorage.setItem("user", JSON.stringify(data));
       console.log("User registered successfully");
       setMessage("User registered successfully");
-      return navigate ("/");
+      return navigate ("/login");
     } catch (err) {
       console.log ("Error: " + err);
       setMessage("Error: " + err);
