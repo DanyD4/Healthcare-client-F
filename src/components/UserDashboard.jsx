@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { useAuth } from "../hooks/useAuth";
 import Logo from "../assets/health_care_logo.svg";
 import styled from "styled-components";
@@ -51,7 +52,7 @@ const MeetingItem = styled.div`
   justify-content: space-between;
   padding: 0.5rem 0;
   border-bottom: 1px solid #ddd;
-
+  
   &:last-child {
     border-bottom: none;
   }
@@ -72,29 +73,43 @@ const LogoutContainer = styled.div`
 `;
 
 function UserDashboard() {
+  const [userProfile, setUserProfile] = useState(null); 
+
   const {
     authState: { user },
   } = useAuth();
 
+ 
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/user/profile", {
+          withCredentials: true, 
+        });
+        setUserProfile(response.data); 
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    fetchUserProfile(); 
+  }, []);
+
+  // fakedata
   const upcomingMeetings = [
-    { id: 1, date: "2023-12-15", time: "10:00", description: "\u00A0\u00A0(info här)" },
-    { id: 2, date: "2023-12-20", time: "13:00", description: " \u00A0\u00A0(info här)" },
+    { id: 1, date: "2023-12-15", time: "10:00", description: "info här" },
+    { id: 2, date: "2023-12-20", time: "13:00", description: "info här" },
   ];
 
   const meetingHistory = [
-    { id: 1, date: "2023-11-01", time: "09:00", description: "\u00A0\u00A0(info här)" },
-    { id: 2, date: "2023-10-15", time: "14:00", description: "\u00A0\u00A0(info här)" },
+    { id: 1, date: "2023-11-01", time: "09:00", description: "info här" },
+    { id: 2, date: "2023-10-15", time: "14:00", description: "info här" },
   ];
 
-  const userProfile = {
-    firstName: "Boy",
-    lastName: "Nadal",
-    email: "test@hotmail.com",
-    phone: "070-123 4567",
-    street: "Main Street 12",
-    city: "Göteborg",
-    zipcode: "123 45",
-  };
+  
+  if (!userProfile) {
+    return <p>Loading profile...</p>;
+  }
 
   return (
     <UserContainer>
