@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,10 +13,8 @@ import Home from "./components/Home";
 import RequireAuth from "./components/RequireAuth";
 import GlobalStyle from "./styles/GlobalStyle";
 import Register from "./components/Register"; // Lägg till denna import
-import Footer from './components/Footer'; 
-import Header from './components/Header'; 
-
-
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
   return (
@@ -25,31 +22,32 @@ function App() {
       <GlobalStyle />
       <div className="content">
         <Router>
-          <Header /> 
+          <Header />
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route
               path="/user/dashboard"
               element={
-                <RequireAuth allowedRoles={["ROLE_USER"]}> 
+                <RequireAuth allowedRoles={["USER"]}>
                   <UserDashboard />
-                </RequireAuth>//ändrat från USER
+                </RequireAuth> //ändrat från USER
               }
             />
             <Route
               path="/admin/dashboard"
               element={
-                <RequireAuth allowedRoles={["ROLE_ADMIN"]}> 
+                <RequireAuth allowedRoles={["ADMIN"]}>
                   <AdminDashboard />
-                </RequireAuth>//ändrat från ADMIN
+                </RequireAuth> //ändrat från ADMIN
               }
             />
-            <Route path="/register" element={<Register />} /> {/* Ny route för Register */}
+            <Route path="/register" element={<Register />} />{" "}
+            {/* Ny route för Register */}
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          <Footer /> 
+          <Footer />
         </Router>
       </div>
     </AuthProvider>
