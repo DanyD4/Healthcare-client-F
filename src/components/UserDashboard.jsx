@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import Logo from "../assets/health_care_logo.svg";
 import styled from "styled-components";
 import Logout from "./Logout";
+import axios from "axios";
 // div with styles
 const UserContainer = styled.div`
   display: flex;
@@ -24,17 +25,67 @@ const Text = styled.p`
 `;
 
 function UserDashboard() {
+  const [userProfile, setUserProfile] = useState("");
+  const [appointments, setAppointments] = useState([]);
   // using custom hook to check if the user i authenticated and has the correct role
   const {
     authState: { user },
   } = useAuth();
   const [users, setUsers] = useState([]);
 
+  const loggedInUserId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/auth/check`,
+          {
+            withCredentials: true,
+          }
+        );
+        setUserProfile(response.data);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
+  useEffect(() => {
+    const fetchAllAppointments = async () => {
+      try {
+        const response = await axios.get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/appointments/patient/${loggedInUserId}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("APPOINTMENTS: " + JSON.stringify(response.data));
+        setAppointments(response.data);
+      } catch (error) {
+        console.error("Error fetching user appointments:", error);
+      }
+    };
+
+    fetchAllAppointments();
+  }, []);
+
   return (
     <UserContainer>
       <LogoContainer src={Logo} />
       <Title>User Dashboard</Title>
-      <Text>Welcome, {user}!</Text>
+      <Text>Welcome, {userProfile.username}!</Text>
+      <div>
+        {appointments.map((appointment) => (
+          <div>
+            <p>{appointment.caregiverId}</p>
+          </div>
+        ))}
+      </div>
       <Logout />
     </UserContainer>
     /*  

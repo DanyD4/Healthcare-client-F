@@ -91,6 +91,8 @@ function Login() {
 
       localStorage.setItem("userId", userId);
 
+      // const loggedInUser = localStorage.getItem("userId")
+
       setAuthState({
         isAuthenticated: true,
         user: username,
