@@ -36,6 +36,7 @@ const Header = () => (
     <Logo>Health Care</Logo>
     <NavLinks>
       <Link to="/">Home</Link>
+      <Link to="/register">Register</Link>
       <Link to="/about">About</Link>
       <Link to="/seek healthcare">Seek healthcare</Link>
     </NavLinks>
