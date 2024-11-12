@@ -3,7 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 import Logo from "../assets/health_care_logo.svg";
 import styled from "styled-components";
 import Logout from "./Logout";
-// admin page, can only visit if you have role ADMIN
+
 const AdminContainer = styled.div`
   display: flex;
   align-items: center;

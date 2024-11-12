@@ -14,7 +14,10 @@ import RequireAuth from "./components/RequireAuth";
 import GlobalStyle from "./styles/GlobalStyle";
 import Register from "./components/Register";
 import Booking from "./components/Booking";
-import BookingConfirmation from "./components/BookingConfirmation"; // Lägg till denna import
+import BookingConfirmation from "./components/BookingConfirmation"; 
+import CreateAvailability from "./components/CreateAvailability";
+import ProviderDashboard from "./components/ProviderDashboard";
+
 
 
 function App() {
@@ -23,9 +26,11 @@ function App() {
       <GlobalStyle />
       <div className="content">
         <Router>
+          
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
+            {/*
             <Route
               path="/user/dashboard"
               element={
@@ -33,7 +38,8 @@ function App() {
                   <UserDashboard />
                 </RequireAuth>
               }
-            />
+            />*/}
+            
             <Route
               path="/admin/dashboard"
               element={
@@ -47,6 +53,8 @@ function App() {
             <Route path="/booking-confirmation" element={<BookingConfirmation />} /> 
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/Admin" element={<CreateAvailability />} />
+            <Route path="/profile/page" element={<UserDashboard />} />
           </Routes>
         </Router>
       </div>

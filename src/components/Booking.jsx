@@ -121,7 +121,7 @@ const Booking = () => {
   const generateAvailableDates = () => {
     return [
       // 1-4 oktober
-      { date: new Date(2024, 9, 1), times: ["09:00", "11:00", "13:00", "15:00"] },
+      { date: new Date(2024, 9, 1), times: ["09:00", "13:00", "15:00"] },
       { date: new Date(2024, 9, 2), times: ["09:00", "11:00", "13:00", "15:00"] },
       { date: new Date(2024, 9, 3), times: ["09:00", "11:00", "13:00", "15:00"] },
       { date: new Date(2024, 9, 4), times: ["09:00", "11:00", "13:00", "15:00"] },
@@ -153,8 +153,8 @@ const Booking = () => {
       { date: new Date(2024, 9, 30), times: ["09:00",] },
   
     
-      { date: new Date(2024, 9, 31), times: ["13:00", "15:00", "17:00"] }, // Tillgängliga tider den 31 oktober
-      { date: new Date(2024, 10, 1), times: [] }, // 1 november är fullbokad (visas i rött)
+      { date: new Date(2024, 9, 31), times: ["13:00", "15:00", "17:00"] }, 
+      { date: new Date(2024, 10, 1), times: [] }, 
     ];
   };
 
@@ -162,11 +162,11 @@ const Booking = () => {
     setAvailableDates(generateAvailableDates());
   }, []);
 
-  // Hantering av datumval för att endast visa lediga tider
+  
   const handleDateChange = (date) => {
     setFormData({ ...formData, appointmentDate: date });
 
-    // Hämta endast lediga tider för valt datum
+  
     const selectedDate = availableDates.find((d) => d.date.getTime() === date.getTime());
     if (selectedDate) {
       setAvailableTimes(selectedDate.times);
@@ -186,7 +186,7 @@ const Booking = () => {
 
   const closeConfirmation = () => setIsConfirmationVisible(false);
 
-  // Markera dagar baserat på fullbokning så dom blir röda 
+  
   const tileClassName = ({ date }) => {
     const day = availableDates.find((d) => d.date.getTime() === date.getTime());
     return day && day.times.length === 0 ? "booked" : null;
