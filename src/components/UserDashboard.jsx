@@ -75,25 +75,24 @@ function UserDashboard() {
     fetchAllAppointments();
   }, []);
 
-   //const handleBookAppointment = () => { 
-    //navigate("/booking/dashboard"); // Navigera till BookingDashboard
-  //};
 
-  return (
+ return (
     <UserContainer>
       <LogoContainer src={Logo} />
       <Title>User Dashboard</Title>
       <Text>Welcome, {userProfile.username}!</Text>
-      <div>
-        {appointments.map((appointment) => (
-          <div>
-            <p>{appointment.caregiverId}</p>
-          </div>
-        ))}
-      </div>
+      
+    
       
       <Logout />
     </UserContainer>
+      /*<div>
+      {appointments.map((appointment) => (
+        <div>
+          <p>{appointment.caregiverId}</p>
+        </div>
+      ))}
+    </div>
     /*  
    Så här hade det sett ut utan styled components
    då hade vi kanske lagt homeContainer som en css klass med samma styles 

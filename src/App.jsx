@@ -43,7 +43,7 @@ function App() {
                 </RequireAuth> //ändrat från ADMIN
               }
               /> <Route
-               path="/booking/dashboard" 
+               path="/booking/dashboard" //skriv /dashboard 
                element={ 
                <RequireAuth allowedRoles={["USER"]}> 
                <BookingDashboard /> 
