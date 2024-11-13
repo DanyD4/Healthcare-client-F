@@ -68,10 +68,10 @@ const RegisterButton = styled.button`
 
 
 const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  //const [firstName, setFirstName] = useState("");
+  //const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  //const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(""); //nytt
 
@@ -84,18 +84,18 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !username || !password) {
+    /*if (!firstName || !lastName || !email || !username || !password) {
       alert("Fill in all fields for registration!");
       return;
-    }
+    }*/
 
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/register`,
         {
-          firstName,
-          lastName,
-          email,
+          //firstName,
+          //lastName,
+          //email,
           username,
           password,
         }
@@ -121,20 +121,7 @@ return (
   <RegisterContainer>
     <RegisterTitle>Create Account</RegisterTitle>
     <FormWrapper onSubmit={handleSubmit}>
-      <label>First Name</label>
-      <StyledInput
-        type="text"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        required
-      />
-      <label>Last Name</label>
-      <StyledInput
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        required
-      />
+ 
       <label>User Name</label>
       <StyledInput
         type="text"
@@ -142,13 +129,8 @@ return (
         onChange={(e) => setUsername(e.target.value)}
         required
       />
-      <label>Email Address</label>
-      <StyledInput
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
+      
+      
       <label>Password</label>
       <StyledInput
         type="password"
@@ -165,3 +147,31 @@ return (
 
 
 export default Register;
+/*
+<label>First Name</label>
+<StyledInput
+  type="text"
+  value={firstName}
+  onChange={(e) => setFirstName(e.target.value)}
+  required
+/>
+<label>Last Name</label>
+<StyledInput
+  type="text"
+  value={lastName}
+  onChange={(e) => setLastName(e.target.value)}
+  //required
+/>
+<label>User Name</label>
+<StyledInput
+  type="text"
+  value={username}
+  onChange={(e) => setUsername(e.target.value)}
+  required
+/>
+<label>Email Address</label>
+<StyledInput
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  //required*/
