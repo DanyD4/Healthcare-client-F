@@ -85,26 +85,30 @@ function Login() {
           // so remember to user this if needed
         }
       );
-      console.log("Response data:", response.data); 
+      console.log("Response data:", JSON.stringify(response.data));
 
-      const { username, roles } = response.data;
+      const { username, roles, userId } = response.data;
+
+      localStorage.setItem("userId", userId);
+
+      // const loggedInUser = localStorage.getItem("userId")
 
       setAuthState({
         isAuthenticated: true,
         user: username,
         roles: roles,
-        loading: false, 
+        loading: false,
       });
 
       console.log("Auth state updated:", {
         isAuthenticated: true,
         user: username,
         roles: roles,
-        loading: false, 
+        loading: false,
       });
 
       // redirect based on role
-      if (roles.includes("ROLE_ADMIN")) {
+      if (roles.includes("ADMIN")) {
         navigate("/admin/dashboard", { replace: true });
       } else {
         navigate("/user/dashboard", { replace: true });
