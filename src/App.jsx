@@ -15,6 +15,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import Register from "./components/Register"; // Lägg till denna import
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import BookingDashboard from "./components/BookingDashboard"
 
 function App() {
   return (
@@ -41,7 +42,13 @@ function App() {
                   <AdminDashboard />
                 </RequireAuth> //ändrat från ADMIN
               }
-            />
+              /> <Route
+               path="/booking/dashboard" 
+               element={ 
+               <RequireAuth allowedRoles={["USER"]}> 
+               <BookingDashboard /> 
+               </RequireAuth> } 
+               /> 
             <Route path="/register" element={<Register />} />{" "}
             {/* Ny route för Register */}
             <Route path="/" element={<Home />} />

@@ -4,6 +4,7 @@ import Logo from "../assets/health_care_logo.svg";
 import styled from "styled-components";
 import Logout from "./Logout";
 import axios from "axios";
+
 // div with styles
 const UserContainer = styled.div`
   display: flex;
@@ -74,6 +75,10 @@ function UserDashboard() {
     fetchAllAppointments();
   }, []);
 
+   //const handleBookAppointment = () => { 
+    //navigate("/booking/dashboard"); // Navigera till BookingDashboard
+  //};
+
   return (
     <UserContainer>
       <LogoContainer src={Logo} />
@@ -86,6 +91,7 @@ function UserDashboard() {
           </div>
         ))}
       </div>
+      
       <Logout />
     </UserContainer>
     /*  
