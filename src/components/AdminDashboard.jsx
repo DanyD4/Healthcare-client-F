@@ -193,7 +193,7 @@ function AdminDashboard() {
                       checked={selectedDates.includes(date)}
                       onChange={() => toggleDateSelection(date)}
                     />
-                    {date.toDateString()}
+                     {date.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })} {date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </label>
                 </DateItem>
               ))}

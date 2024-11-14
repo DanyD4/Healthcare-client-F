@@ -5,34 +5,83 @@ import styled from "styled-components";
 import Logout from "./Logout";
 import axios from "axios";
 
-// div with styles
+
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+   padding: 0rem 2rem 2rem 2rem; 
 `;
-// img with styles
+const LogoutButton = styled(Logout)`
+  margin-bottom: 2rem; /* Justera detta värde efter behov */
+`;
+
 const LogoContainer = styled.img`
   height: 20rem;
+  margin-bottom: 1.5rem;
 `;
-// h2 with styles
+
 const Title = styled.h2`
   font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
 `;
-// p with styles
+
 const Text = styled.p`
   font-size: 18px;
+  color: #555;
+  margin-bottom: 2rem;
 `;
+
+const UpcomingMeetingsContainer = styled.div`
+  width: 100%;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 0rem;
+`;
+
+const MeetingTitle = styled.h3`
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 1rem;
+`;
+
+const MeetingItem = styled.div`
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+`;
+
+
+const formatDate = (date) => {
+  return date.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+const formatTime = (date) => {
+  return date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
 
 function UserDashboard() {
   const [userProfile, setUserProfile] = useState("");
   const [appointments, setAppointments] = useState([]);
-  // using custom hook to check if the user i authenticated and has the correct role
   const {
     authState: { user },
   } = useAuth();
-  const [users, setUsers] = useState([]);
 
   const loggedInUserId = localStorage.getItem("userId");
 
@@ -58,14 +107,11 @@ function UserDashboard() {
     const fetchAllAppointments = async () => {
       try {
         const response = await axios.get(
-          `${
-            import.meta.env.VITE_API_URL
-          }/appointments/patient/${loggedInUserId}`,
+          `${import.meta.env.VITE_API_URL}/appointments/patient/${loggedInUserId}`,
           {
             withCredentials: true,
           }
         );
-        console.log("APPOINTMENTS: " + JSON.stringify(response.data));
         setAppointments(response.data);
       } catch (error) {
         console.error("Error fetching user appointments:", error);
@@ -75,41 +121,35 @@ function UserDashboard() {
     fetchAllAppointments();
   }, []);
 
-  
+  return (
+    <UserContainer>
+      <LogoContainer src={Logo} alt="Health Care Logo" />
+      <Title>User Dashboard</Title>
+      <Text>Welcome, {userProfile.username}!</Text>
 
-
-  return ( <UserContainer> 
-    <LogoContainer src={Logo} /> 
-    <Title>User Dashboard</Title> 
-    <Text>Welcome, {userProfile.username}!</Text> 
-    <div> {appointments.map((appointment) => { 
-      const date = new Date(appointment.localDateTime); 
-      return ( 
-      <div key={appointment.id}> 
-      <p>Date and Time: {date.toISOString()}</p>
+      <UpcomingMeetingsContainer>
+        <MeetingTitle>Upcoming Meetings</MeetingTitle>
+        {appointments.length > 0 ? (
+          appointments.map((appointment) => {
+            const date = new Date(appointment.localDateTime);
+            return (
+              <MeetingItem key={appointment.id}>
+                <span>{formatDate(date)}</span>
+                <span>{formatTime(date)}</span>
+              </MeetingItem>
+            );
+          })
+        ) : (
+          <p>No upcoming meetings scheduled.</p>
+        )}
+      </UpcomingMeetingsContainer>  
       
-      </div> 
-      ); 
-    })} 
-    </div> <Logout />
-     </UserContainer> 
-     ); 
-    }
 
-    export default UserDashboard;
+     
 
+      <Logout />
+    </UserContainer>
+  );
+}
 
-    /*<div>
-      {appointments.map((appointment) => (
-        <div>
-          <p>{appointment.caregiverId}</p>
-        </div>
-      ))}
-    </div>
-    /*  
-   Så här hade det sett ut utan styled components
-   då hade vi kanske lagt homeContainer som en css klass med samma styles 
-   som ovan osv.
- 
-  
-   */
+export default UserDashboard;

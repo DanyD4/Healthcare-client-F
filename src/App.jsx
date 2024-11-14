@@ -15,7 +15,8 @@ import GlobalStyle from "./styles/GlobalStyle";
 import Register from "./components/Register"; // Lägg till denna import
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import BookingDashboard from "./components/BookingDashboard"
+import BookingDashboard from "./components/BookingDashboard";
+
 
 function App() {
   return (
