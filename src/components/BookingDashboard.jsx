@@ -31,7 +31,7 @@ function BookingDashboard() {
   const [dateSlots, setDateSlots] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const caregiverId = "6734784598870028bd51e900"; // Hårdkodad caregiverID för att hämta availability
+  const caregiverId = "6734784598870028bd51e900"; // Hårdkodad caregiverID för att hämta availability.
 
   useEffect(() => {
     const fetchAvailableSlots = async () => {
