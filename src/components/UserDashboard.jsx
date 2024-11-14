@@ -81,6 +81,13 @@ function UserDashboard() {
       <LogoContainer src={Logo} />
       <Title>User Dashboard</Title>
       <Text>Welcome, {userProfile.username}!</Text>
+      <div>
+      {appointments.map((appointment) => (
+        <div>
+          <p>{appointment.caregiverId}</p>
+        </div>
+      ))}
+    </div>
       
     
       
