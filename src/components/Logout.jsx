@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 
-// Definiera stil för Logout-knappen direkt i denna fil
+
 const StyledLogoutButton = styled.button`
   cursor: pointer;
   padding: 10px 30px;
@@ -18,6 +18,7 @@ const StyledLogoutButton = styled.button`
     box-shadow 0.2s ease;
   text-align: center;
   border: none;
+  
 
 
   &:hover {
