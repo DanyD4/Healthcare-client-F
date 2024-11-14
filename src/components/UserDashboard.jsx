@@ -75,25 +75,31 @@ function UserDashboard() {
     fetchAllAppointments();
   }, []);
 
+  
 
- return (
-    <UserContainer>
-      <LogoContainer src={Logo} />
-      <Title>User Dashboard</Title>
-      <Text>Welcome, {userProfile.username}!</Text>
-      <div>
-      {appointments.map((appointment) => (
-        <div>
-          <p>{appointment.caregiverId}</p>
-        </div>
-      ))}
-    </div>
+
+  return ( <UserContainer> 
+    <LogoContainer src={Logo} /> 
+    <Title>User Dashboard</Title> 
+    <Text>Welcome, {userProfile.username}!</Text> 
+    <div> {appointments.map((appointment) => { 
+      const date = new Date(appointment.localDateTime); 
+      return ( 
+      <div key={appointment.id}> 
+      <p>Date and Time: {date.toISOString()}</p>
       
-    
-      
-      <Logout />
-    </UserContainer>
-      /*<div>
+      </div> 
+      ); 
+    })} 
+    </div> <Logout />
+     </UserContainer> 
+     ); 
+    }
+
+    export default UserDashboard;
+
+
+    /*<div>
       {appointments.map((appointment) => (
         <div>
           <p>{appointment.caregiverId}</p>
@@ -104,13 +110,6 @@ function UserDashboard() {
    Så här hade det sett ut utan styled components
    då hade vi kanske lagt homeContainer som en css klass med samma styles 
    som ovan osv.
-   <div>
-     <img src={Logo} />
-     <h2>User Dashboard</h2>
-     <p>Welcome, {user}</p>
-     <button>Logout</button>
-   </div> */
-  );
-}
-
-export default UserDashboard;
+ 
+  
+   */
