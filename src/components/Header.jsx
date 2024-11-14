@@ -39,6 +39,7 @@ const Header = () => (
       <Link to="/register">Register</Link>
       <Link to="/about">About</Link>
       <Link to="/booking/dashboard">Book Appointment</Link>
+      <Link to="/user/dashboard">Profile</Link>
     </NavLinks>
   </HeaderContainer>
 );
